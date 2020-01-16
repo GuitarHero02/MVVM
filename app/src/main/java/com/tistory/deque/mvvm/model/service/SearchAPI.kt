@@ -9,8 +9,6 @@ import retrofit2.http.QueryMap
  * @author Leopold
  */
 interface SearchAPI {
-
     @GET("/search/repositories")
     fun search(@QueryMap params: MutableMap<String, String>): Single<RepositoriesResponse>
-
 }

@@ -3,6 +3,7 @@ package com.tistory.deque.mvvm.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tistory.deque.mvvm.R
 import com.tistory.deque.mvvm.base.BindingViewHolder
@@ -33,4 +34,16 @@ class RepositoryAdapter(var items: List<Repository> = arrayListOf(), val vm: Sea
 
     override fun getItemCount() = items.size
     class RepositoryViewHolder(view: View) : BindingViewHolder<ItemRepositoryBinding>(view)
+}
+
+@BindingAdapter(value = ["repositories", "viewModel"])
+fun setRepositories(view: RecyclerView, items: List<Repository>, vm: SearchViewModel) {
+    view.adapter?.let {
+        if (it is RepositoryAdapter) {
+            it.items = items
+            it.notifyDataSetChanged()
+        }
+    } ?: run {
+        RepositoryAdapter(items, vm).apply { view.adapter = this }
+    }
 }
