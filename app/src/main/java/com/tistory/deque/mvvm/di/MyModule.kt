@@ -8,6 +8,7 @@ import com.tistory.deque.mvvm.model.DataModel
 import com.tistory.deque.mvvm.model.DataModelImpl
 import com.tistory.deque.mvvm.model.service.KakaoSearchService
 import com.tistory.deque.mvvm.model.service.SearchAPI
+import com.tistory.deque.mvvm.viewmodel.BookMarkViewModel
 import com.tistory.deque.mvvm.viewmodel.ContactViewModel
 import com.tistory.deque.mvvm.viewmodel.MainViewModel
 import com.tistory.deque.mvvm.viewmodel.SearchViewModel
@@ -102,6 +103,9 @@ var viewModelPart = module {
     }
     viewModel {
         SearchViewModel(get(), get())
+    }
+    viewModel {
+        BookMarkViewModel(get())
     }
 }
 

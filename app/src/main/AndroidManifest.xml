@@ -23,6 +23,7 @@
         <activity android:name="com.tistory.deque.mvvm.view.ContactActivity"/>
         <activity android:name="com.tistory.deque.mvvm.view.AddActivity"/>
         <activity android:name="com.tistory.deque.mvvm.view.SearchActivity"/>
+        <activity android:name="com.tistory.deque.mvvm.view.BookMarkActivity"/>
     </application>
 
 </manifest>
