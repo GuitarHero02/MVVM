@@ -8,10 +8,8 @@ import com.tistory.deque.mvvm.model.DataModel
 import com.tistory.deque.mvvm.model.DataModelImpl
 import com.tistory.deque.mvvm.model.service.KakaoSearchService
 import com.tistory.deque.mvvm.model.service.SearchAPI
-import com.tistory.deque.mvvm.viewmodel.BookMarkViewModel
-import com.tistory.deque.mvvm.viewmodel.ContactViewModel
-import com.tistory.deque.mvvm.viewmodel.MainViewModel
-import com.tistory.deque.mvvm.viewmodel.SearchViewModel
+import com.tistory.deque.mvvm.repository.CatRepository
+import com.tistory.deque.mvvm.viewmodel.*
 import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -107,12 +105,19 @@ var viewModelPart = module {
     viewModel {
         BookMarkViewModel(get())
     }
+    viewModel {
+        CatViewModel()
+    }
+    viewModel {
+        CatListViewModel(get())
+    }
 }
 
 val databaseModule = module {
     single { ContactDatabase.getInstance(androidApplication()) }
     single { get<ContactDatabase>().getContactDao() }
-    single(createOnStart = false) { get<ContactDatabase>().getBookmarkDao() }
+    single(createOnStart = false) { get<ContactDatabase>().getBookmarkDao()}
+    single { get<ContactDatabase> ().getCatDao()}
 }
 
 var myDiModule = listOf(retrofitPart, adapterPart, modelPart, viewModelPart, databaseModule, gitNetworkModule, apiModule)

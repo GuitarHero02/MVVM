@@ -62,6 +62,10 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
                 startActivity(Intent(this, SearchActivity::class.java))
                 true
             }
+            R.id.cat -> {
+                startActivity(Intent(this, CatActivity::class.java))
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

@@ -13,5 +13,9 @@
             android:id="@+id/bookmark"
             android:title="@string/menu_bookmark"
             android:icon="@drawable/ic_bookmark"/>
+        <item
+            android:id="@+id/cat"
+            android:title="@string/menu_cat"
+            android:icon="@drawable/ic_bookmark"/>
     </group>
 </menu>
