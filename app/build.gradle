@@ -21,7 +21,49 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            multiDexEnabled true
+            debuggable true
+        }
     }
+    flavorDimensions "flavors"
+    productFlavors {
+        dev {
+            /* !개발모드에서만 적용-빌드최적화 */
+            // 멀티 APK
+            splits.abi.enable = false
+            splits.density.enable = false
+            // PNG 크기 최적화
+            aaptOptions.cruncherEnabled = false
+            // Crashlytics의 Build ID 업데이트 비활성화
+            ext.alwaysUpdateBuildId = false
+            // Crashlytics 보고서 사용 비활성화
+            ext.enableCrashlytics = false
+            // 참조 res 정의
+            resConfigs("ko", "xxxhdpi")
+//            applicationIdSuffix ".dev"
+        }
+        real {}
+    }
+    android.applicationVariants.all { variant ->
+        def flavor = variant.getFlavorName()
+        def buildType = variant.variantData.variantConfiguration.buildType.name
+
+        if (flavor == 'dev') {
+
+        } else {
+
+        }
+
+//        variant.outputs.all {
+//            def appName = 'fint'
+//            def version = variant.versionName
+//            def formattedDate = new Date().format('yyMMdd_HHmm')
+//            def newApkName = "${appName}_${flavor}_${buildType}_${version}_${formattedDate}.apk"
+//            outputFileName = new File(newApkName)
+//        }
+    }
+
     dataBinding {
         enabled = true
     }
