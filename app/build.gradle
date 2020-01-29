@@ -127,7 +127,7 @@ tasks.whenTaskAdded { task ->
     if (task.name == "crashlyticsUploadDistributionInspectionDebug") {
         ext.betaDistributionNotifications = true
         ext.betaDistributionReleaseNotes = "beta"
-//        ext.betaDistributionEmails="gh.lee@dco.com"
+//        ext.betaDistributionEmails="sc.lee@dco.com"
         ext.betaDistributionGroupAliases = "aos_r"
         task.dependsOn assembleInspectionDebug
     }
