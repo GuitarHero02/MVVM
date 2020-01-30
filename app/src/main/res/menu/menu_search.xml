@@ -17,5 +17,9 @@
             android:id="@+id/cat"
             android:title="@string/menu_cat"
             android:icon="@drawable/ic_bookmark"/>
+        <item
+            android:id="@+id/all_info"
+            android:title="@string/menu_all_info"
+            android:icon="@drawable/ic_bookmark"/>
     </group>
 </menu>
