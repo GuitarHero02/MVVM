@@ -11,11 +11,11 @@ import com.tistory.deque.mvvm.databinding.RvItemCatListBinding
 import com.tistory.deque.mvvm.model.Cat
 
 class CatListAdapter : ListAdapter<Cat, CatListAdapter.ViewHolder>(CatListDiffCallback()) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatListAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(RvItemCatListBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    override fun onBindViewHolder(holder: CatListAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val cat = getItem(position)
         holder.bind(cat)
 
