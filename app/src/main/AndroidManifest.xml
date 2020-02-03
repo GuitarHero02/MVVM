@@ -25,6 +25,7 @@
         <activity android:name="com.tistory.deque.mvvm.view.SearchActivity"/>
         <activity android:name="com.tistory.deque.mvvm.view.BookMarkActivity"/>
         <activity android:name="com.tistory.deque.mvvm.view.CatActivity"/>
+        <activity android:name="com.tistory.deque.mvvm.view.PersonalInfoActivity"/>
     </application>
 
 </manifest>

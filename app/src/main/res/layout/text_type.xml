@@ -1,0 +1,19 @@
+<LinearLayout
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+>
+    <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:textAlignment="textStart"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTitle"
+            android:textSize="20sp"
+    />
+
+</LinearLayout>
