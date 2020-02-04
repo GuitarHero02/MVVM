@@ -1,18 +1,12 @@
 package com.tistory.deque.mvvm.view
 
-import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.ysmg.adm.util.extend.replaceFragment
 import com.tistory.deque.mvvm.R
 import com.tistory.deque.mvvm.adapter.MultiViewTypeAdapter
 import com.tistory.deque.mvvm.base.BaseKotlinActivity
-import com.tistory.deque.mvvm.databinding.ActivityCatBinding
 import com.tistory.deque.mvvm.databinding.ActivityPersonalInfoBinding
 import com.tistory.deque.mvvm.model.MultiTypeModel
-import com.tistory.deque.mvvm.model.User
-import com.tistory.deque.mvvm.view.fragment.CatListFragment
 import com.tistory.deque.mvvm.viewmodel.CatViewModel
 import kotlinx.android.synthetic.main.activity_personal_info.*
 import org.koin.androidx.viewmodel.ext.android.viewModel

@@ -18,7 +18,12 @@ class MainSearchRecyclerViewAdapter: RecyclerView.Adapter<RecyclerView.ViewHolde
     ) {
         fun onBind(item:ImageItem){
             itemView.run {
-                Picasso.with(context).load(item.imageUrl).placeholder(R.drawable.ic_image_black_24dp).into(item_main_image_view)
+                Picasso
+                    .with(context)
+                    .load(item.imageUrl)
+                    .placeholder(R.drawable.ic_image_black_24dp)
+                    .into(item_main_image_view)
+
                 item_main_image_view.setOnClickListener {
                     ContextCompat.startActivity(context, Intent(Intent.ACTION_VIEW, Uri.parse(item.documentUrl)), null)
                 }
