@@ -31,7 +31,7 @@ class CatDBWoker(context: Context, workerParams: WorkerParameters) : Worker(cont
                     Log.e("CHECK INTO HERE", database.getCatDao().getAll().toString())
 
                     val list = mutableListOf<MultiTypeModel>().apply {
-                        add(MultiTypeModel(id = 1, type = MultiType.TEXT_TYPE.type, text = "카테고리 1번!", data = 0, contentString = null))
+                        add(MultiTypeModel(id = 1, type = MultiType.TEXT_TYPE.type, text = "이승찬님의 핀트투자는 \n3,000,000,000원 \n입니다.", data = 0, contentString = null))
                         add(MultiTypeModel(id = 2, type = MultiType.IMAGE_TYPE.type, text = "텍스트뷰 아래에 이미지가 있는 뷰타입.", data = R.drawable.snow, contentString = null))
                         add(MultiTypeModel(id = 3, type = MultiType.IMAGE_TYPE_2.type, text = "안녕, 제목부분이 될거야", data = R.drawable.snow, contentString = "내용부분!"))
                         add(MultiTypeModel(id = 4, type = MultiType.IMAGE_TYPE.type, text = "다시 한 번 텍스트 옆에 이미지가 있는 뷰타입", data = R.drawable.snow, contentString = null))

@@ -17,7 +17,7 @@ import com.tistory.deque.mvvm.R
 import com.tistory.deque.mvvm.model.MultiTypeModel
 import com.tistory.deque.mvvm.model.enum.MultiType
 
-class MultiViewTypeAdapter(private val list: List<MultiTypeModel>) :
+class MultiViewTypeAdapter(private val list: List<MultiTypeModel>, private val action:() -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var totalTypes = list.size
@@ -29,14 +29,17 @@ class MultiViewTypeAdapter(private val list: List<MultiTypeModel>) :
         return when (viewType) {
             MultiType.TEXT_TYPE.type -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.text_type, parent, false)
+                view.setOnClickListener { action() }
                 TextTypeViewHolder(view)
             }
             MultiType.IMAGE_TYPE.type -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.image_type, parent, false)
+                view.setOnClickListener { action() }
                 ImageTypeViewHolder(view)
             }
             MultiType.IMAGE_TYPE_2.type -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.image_type2, parent, false)
+                view.setOnClickListener { action() }
                 ImageTypeView2Holder(view)
             }
             else -> throw RuntimeException("알 수 없는 뷰 타입 에러")

@@ -4,7 +4,7 @@
     <color name="colorPrimary">#f45a2b</color>
     <color name="colorPrimaryDark">#f47735</color>
     <color name="colorAccent">#F7E317</color>
-    <color name="colorTitle">#343838</color>
+    <color name="colorTitle">#0c2243</color>
     <color name="chartLineColor">#00bbd8</color>
     <color name="white">#ffffff</color>
 </resources>

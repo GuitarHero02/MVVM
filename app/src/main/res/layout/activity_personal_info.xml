@@ -13,21 +13,31 @@
                 type="com.tistory.deque.mvvm.viewmodel.CatViewModel"/>
     </data>
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/chartLineColor">
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_sheet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="vertical">
-        <FrameLayout
+            android:orientation="vertical"
+            android:background="@drawable/balloon_button"
+            app:layout_behavior="@string/bottom_sheet_behavior">
+            <FrameLayout
                 android:id="@+id/fl_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_profile_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
-            </androidx.recyclerview.widget.RecyclerView>
-        </FrameLayout>
-    </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_profile_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+                </androidx.recyclerview.widget.RecyclerView>
+            </FrameLayout>
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
