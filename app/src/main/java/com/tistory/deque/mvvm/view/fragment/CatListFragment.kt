@@ -6,16 +6,16 @@ import com.tistory.deque.mvvm.R
 import com.tistory.deque.mvvm.adapter.CatListAdapter
 import com.tistory.deque.mvvm.base.BaseKotlinFragment
 import com.tistory.deque.mvvm.databinding.FragmentCatListBinding
-import com.tistory.deque.mvvm.viewmodel.CatListViewModel
+import com.tistory.deque.mvvm.viewmodel.CatViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CatListFragment : BaseKotlinFragment<FragmentCatListBinding, CatListViewModel>() {
+class CatListFragment : BaseKotlinFragment<FragmentCatListBinding, CatViewModel>() {
     private var TAG = javaClass.simpleName
 
     override val layoutResourceId: Int
         get() = R.layout.fragment_cat_list
 
-    override val viewModel: CatListViewModel by viewModel()
+    override val viewModel: CatViewModel by viewModel()
 
     override fun initDataBinding() {
         viewModel.cats.observe(this, Observer {

@@ -106,10 +106,7 @@ var viewModelPart = module {
         BookMarkViewModel(get())
     }
     viewModel {
-        CatViewModel()
-    }
-    viewModel {
-        CatListViewModel(get())
+        CatViewModel(get())
     }
 }
 
