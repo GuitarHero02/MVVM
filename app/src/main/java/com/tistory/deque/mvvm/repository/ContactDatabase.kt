@@ -1,28 +1,34 @@
 package com.tistory.deque.mvvm.repository
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
+import androidx.room.OnConflictStrategy
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
+import androidx.work.impl.WorkDatabaseMigrations
 import com.tistory.deque.mvvm.model.Cat
+import com.tistory.deque.mvvm.model.MultiTypeModel
 import com.tistory.deque.mvvm.repository.ContactDatabase.Companion.DB_VERSION
 import com.tistory.deque.mvvm.repository.dao.BookmarkDao
 import com.tistory.deque.mvvm.repository.dao.CatDao
 import com.tistory.deque.mvvm.repository.dao.ContactDao
+import com.tistory.deque.mvvm.repository.dao.MultiTypeDao
 import com.tistory.deque.mvvm.util.CatDBWoker
 
-@Database(entities = [Bookmark::class, Contact::class, Cat::class], version = DB_VERSION, exportSchema = false)
+@Database(entities = [Bookmark::class, Contact::class, Cat::class, MultiTypeModel::class], version = DB_VERSION, exportSchema = true)
 abstract class ContactDatabase: RoomDatabase() {
     abstract fun getContactDao(): ContactDao
     abstract fun getBookmarkDao(): BookmarkDao
     abstract fun getCatDao(): CatDao
+    abstract fun getMultiTypeDao(): MultiTypeDao
 
     companion object {
-        const val DB_VERSION = 2
+        const val DB_VERSION = 5
         private const val DB_NAME = "eds.database"
         @Volatile
         private var INSTANCE: ContactDatabase? = null
@@ -38,16 +44,17 @@ abstract class ContactDatabase: RoomDatabase() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
 
+                        Log.e("CHEK DB GENERATOR", "DB GENERATE")
                         val request = OneTimeWorkRequest.Builder(CatDBWoker::class.java).build()
                         WorkManager.getInstance().enqueue(request)
                     }
                 })
-                .addMigrations(MIGRATION_1_TO_2)
+                .addMigrations(MIGRATION_2_TO_3)
                 .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build()
 
-        private val MIGRATION_1_TO_2 = object : Migration(1, 2) {
+        private val MIGRATION_2_TO_3 = object : Migration(2, 3) {
             override fun migrate(database: SupportSQLiteDatabase) {
 
             }

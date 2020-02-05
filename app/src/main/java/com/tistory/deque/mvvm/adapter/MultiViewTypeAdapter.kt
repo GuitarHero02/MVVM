@@ -15,8 +15,9 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.tistory.deque.mvvm.R
 import com.tistory.deque.mvvm.model.MultiTypeModel
+import com.tistory.deque.mvvm.model.enum.MultiType
 
-class MultiViewTypeAdapter(private val list: MutableList<MultiTypeModel>) :
+class MultiViewTypeAdapter(private val list: List<MultiTypeModel>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var totalTypes = list.size
@@ -26,15 +27,15 @@ class MultiViewTypeAdapter(private val list: MutableList<MultiTypeModel>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view: View?
         return when (viewType) {
-            MultiTypeModel.TEXT_TYPE -> {
+            MultiType.TEXT_TYPE.type -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.text_type, parent, false)
                 TextTypeViewHolder(view)
             }
-            MultiTypeModel.IMAGE_TYPE -> {
+            MultiType.IMAGE_TYPE.type -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.image_type, parent, false)
                 ImageTypeViewHolder(view)
             }
-            MultiTypeModel.IMAGE_TYPE_2 -> {
+            MultiType.IMAGE_TYPE_2.type -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.image_type2, parent, false)
                 ImageTypeView2Holder(view)
             }
@@ -50,8 +51,8 @@ class MultiViewTypeAdapter(private val list: MutableList<MultiTypeModel>) :
         Log.d("MultiViewTypeAdapter", "Hi, onBindViewHolder")
         val obj = list[position]
         when (obj.type) {
-            MultiTypeModel.TEXT_TYPE -> (holder as TextTypeViewHolder).txtType.text = obj.text
-            MultiTypeModel.IMAGE_TYPE -> {
+            MultiType.TEXT_TYPE.type -> (holder as TextTypeViewHolder).txtType.text = obj.text
+            MultiType.IMAGE_TYPE.type -> {
                 (holder as ImageTypeViewHolder).title.text = obj.text
                 holder.image.setImageResource(obj.data)
                 val entries = arrayListOf<Entry>()
@@ -94,7 +95,7 @@ class MultiViewTypeAdapter(private val list: MutableList<MultiTypeModel>) :
                 holder.lineChart.data = data
                 holder.lineChart.animateY(500)
             }
-            MultiTypeModel.IMAGE_TYPE_2 -> {
+            MultiType.IMAGE_TYPE_2.type -> {
                 (holder as ImageTypeView2Holder).title.text = obj.text
                 holder.content.text = obj.contentString
                 holder.image.setImageResource(obj.data)

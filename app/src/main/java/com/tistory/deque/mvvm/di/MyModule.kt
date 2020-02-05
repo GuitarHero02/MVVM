@@ -108,6 +108,9 @@ var viewModelPart = module {
     viewModel {
         CatViewModel(get())
     }
+    viewModel {
+        MultiTypeViewModel(get())
+    }
 }
 
 val databaseModule = module {
@@ -115,6 +118,7 @@ val databaseModule = module {
     single { get<ContactDatabase>().getContactDao() }
     single(createOnStart = false) { get<ContactDatabase>().getBookmarkDao()}
     single { get<ContactDatabase> ().getCatDao()}
+    single { get<ContactDatabase> ().getMultiTypeDao()}
 }
 
 var myDiModule = listOf(retrofitPart, adapterPart, modelPart, viewModelPart, databaseModule, gitNetworkModule, apiModule)
