@@ -27,16 +27,6 @@
                 android:src="@drawable/snow"
         />
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="330dp"
-            android:layout_gravity="bottom"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:paddingEnd="30dp"
-            android:paddingStart="0dp" />
-
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/item_line_chart"
             android:layout_width="match_parent"

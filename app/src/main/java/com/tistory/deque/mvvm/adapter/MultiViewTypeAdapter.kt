@@ -113,8 +113,11 @@ class MultiViewTypeAdapter(private val list: List<MultiTypeModel>, private val a
 
                 holder.lineChart.data = data
                 holder.lineChart.animateY(500)
-
-
+            }
+            MultiType.IMAGE_TYPE_2.type -> {
+                (holder as ImageTypeView2Holder).title.text = obj.text
+                holder.content.text = obj.contentString
+                holder.image.setImageResource(obj.data)
                 val mCardAdapter = CardPagerAdapter()
                 mCardAdapter.addCardItem(CardItem(R.string.title_1, R.drawable.snow, R.color.colorPrimary))
                 mCardAdapter.addCardItem(CardItem(R.string.title_2, R.drawable.snow, R.color.colorPrimaryDark))
@@ -123,11 +126,6 @@ class MultiViewTypeAdapter(private val list: List<MultiTypeModel>, private val a
 
                 holder.viewPager.adapter = mCardAdapter
                 holder.viewPager.offscreenPageLimit = 3
-            }
-            MultiType.IMAGE_TYPE_2.type -> {
-                (holder as ImageTypeView2Holder).title.text = obj.text
-                holder.content.text = obj.contentString
-                holder.image.setImageResource(obj.data)
             }
         }
     }
@@ -145,7 +143,6 @@ class MultiViewTypeAdapter(private val list: List<MultiTypeModel>, private val a
     inner class ImageTypeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.title)
         val image: ImageView = itemView.findViewById(R.id.background)
-        val viewPager: ViewPager = itemView.findViewById(R.id.view_pager)
         val lineChart: LineChart = itemView.findViewById(R.id.item_line_chart)
     }
 
@@ -153,6 +150,7 @@ class MultiViewTypeAdapter(private val list: List<MultiTypeModel>, private val a
         val title: TextView = itemView.findViewById(R.id.titleView)
         val content: TextView = itemView.findViewById(R.id.contentView)
         val image: ImageView = itemView.findViewById(R.id.imageView2)
+        val viewPager: ViewPager = itemView.findViewById(R.id.view_pager)
     }
 
 }
