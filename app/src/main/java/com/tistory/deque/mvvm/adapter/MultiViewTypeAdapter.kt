@@ -9,6 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.github.mikephil.charting.charts.LineChart
@@ -21,10 +23,13 @@ import com.tistory.deque.mvvm.R
 import com.tistory.deque.mvvm.model.MultiTypeModel
 import com.tistory.deque.mvvm.model.enum.MultiType
 import com.google.android.material.behavior.SwipeDismissBehavior
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.tistory.deque.mvvm.model.CardItem
+import com.tistory.deque.mvvm.viewmodel.MultiTypeViewModel
+import kotlinx.android.synthetic.main.activity_personal_info.*
 
 
-class MultiViewTypeAdapter(private val list: List<MultiTypeModel>, private val action:() -> Unit) :
+class MultiViewTypeAdapter(private val list: List<MultiTypeModel>, private val itemList:List<CardItem>, private val action:() -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var totalTypes = list.size
@@ -118,11 +123,15 @@ class MultiViewTypeAdapter(private val list: List<MultiTypeModel>, private val a
                 (holder as ImageTypeView2Holder).title.text = obj.text
                 holder.content.text = obj.contentString
                 holder.image.setImageResource(obj.data)
+
                 val mCardAdapter = CardPagerAdapter()
-                mCardAdapter.addCardItem(CardItem(R.string.title_1, R.drawable.snow, R.color.colorPrimary))
-                mCardAdapter.addCardItem(CardItem(R.string.title_2, R.drawable.snow, R.color.colorPrimaryDark))
-                mCardAdapter.addCardItem(CardItem(R.string.title_3, R.drawable.snow, R.color.colorAccent))
-                mCardAdapter.addCardItem(CardItem(R.string.title_4, R.drawable.snow, R.color.colorTitle))
+//                itemList.forEach {
+//                    mCardAdapter.addCardItem(it)
+//                }
+                mCardAdapter.addCardItem(CardItem(title = R.string.title_1, image = R.drawable.snow, background = R.color.colorPrimary))
+                mCardAdapter.addCardItem(CardItem(title = R.string.title_2, image = R.drawable.snow, background = R.color.colorPrimaryDark))
+                mCardAdapter.addCardItem(CardItem(title = R.string.title_3, image = R.drawable.snow, background = R.color.colorAccent))
+                mCardAdapter.addCardItem(CardItem(title = R.string.title_4, image = R.drawable.snow, background = R.color.colorTitle))
 
                 holder.viewPager.adapter = mCardAdapter
                 holder.viewPager.offscreenPageLimit = 3

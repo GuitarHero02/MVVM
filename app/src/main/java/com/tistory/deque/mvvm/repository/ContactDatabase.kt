@@ -11,24 +11,23 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import androidx.work.impl.WorkDatabaseMigrations
+import com.tistory.deque.mvvm.model.CardItem
 import com.tistory.deque.mvvm.model.Cat
 import com.tistory.deque.mvvm.model.MultiTypeModel
 import com.tistory.deque.mvvm.repository.ContactDatabase.Companion.DB_VERSION
-import com.tistory.deque.mvvm.repository.dao.BookmarkDao
-import com.tistory.deque.mvvm.repository.dao.CatDao
-import com.tistory.deque.mvvm.repository.dao.ContactDao
-import com.tistory.deque.mvvm.repository.dao.MultiTypeDao
+import com.tistory.deque.mvvm.repository.dao.*
 import com.tistory.deque.mvvm.util.CatDBWoker
 
-@Database(entities = [Bookmark::class, Contact::class, Cat::class, MultiTypeModel::class], version = DB_VERSION, exportSchema = true)
+@Database(entities = [Bookmark::class, Contact::class, Cat::class, MultiTypeModel::class, CardItem::class], version = DB_VERSION, exportSchema = true)
 abstract class ContactDatabase: RoomDatabase() {
     abstract fun getContactDao(): ContactDao
     abstract fun getBookmarkDao(): BookmarkDao
     abstract fun getCatDao(): CatDao
     abstract fun getMultiTypeDao(): MultiTypeDao
+    abstract fun getCardItemDao(): CardItemDao
 
     companion object {
-        const val DB_VERSION = 5
+        const val DB_VERSION = 7
         private const val DB_NAME = "eds.database"
         @Volatile
         private var INSTANCE: ContactDatabase? = null
@@ -49,14 +48,14 @@ abstract class ContactDatabase: RoomDatabase() {
                         WorkManager.getInstance().enqueue(request)
                     }
                 })
-                .addMigrations(MIGRATION_2_TO_3)
+//                .addMigrations(MIGRATION_2_TO_3)
                 .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build()
 
-        private val MIGRATION_2_TO_3 = object : Migration(2, 3) {
+        private val MIGRATION_2_TO_3 = object : Migration(6, 7) {
             override fun migrate(database: SupportSQLiteDatabase) {
-
+                Log.e("CHEK DB GENERATOR", "DB GENERATE into migrate")
             }
         }
     }

@@ -1,7 +1,10 @@
 package com.tistory.deque.mvvm.view
 
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -51,9 +54,31 @@ class PersonalInfoActivity : BaseKotlinActivity<ActivityPersonalInfoBinding, Mul
             }
         }
 
+//        viewModel.items.combineWith(viewModel.cardItemList) {
+//            multiModels, cardItems ->
+//            Log.e("items" , multiModels.toString())
+//            Log.e("cardItems" , cardItems.toString())
+//            rv_profile_list.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+//            val adapter = MultiViewTypeAdapter(multiModels!!, cardItems!!, action = {
+//                if(bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
+//                    val handler: android.os.Handler = android.os.Handler()
+//                    handler.postDelayed({
+//                        run {
+//                            rv_profile_list?.smoothScrollToPosition(0)
+//                        }
+//                    }, 200)
+////                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+//                } else {
+//                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+//                }
+//            })
+//            rv_profile_list.adapter = adapter
+//            rv_profile_list.adapter?.notifyDataSetChanged()
+//        }
+
         viewModel.items.observe(this, Observer {
             rv_profile_list.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-            val adapter = MultiViewTypeAdapter(it, action = {
+            val adapter = MultiViewTypeAdapter(it, itemList = arrayListOf(), action = {
                 if(bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
                     val handler: android.os.Handler = android.os.Handler()
                     handler.postDelayed({
@@ -77,4 +102,18 @@ class PersonalInfoActivity : BaseKotlinActivity<ActivityPersonalInfoBinding, Mul
 
     override fun initAfterBinding() {
     }
+}
+
+fun <T, K, R> LiveData<T>.combineWith(
+    liveData: LiveData<K>,
+    block: (T?, K?) -> R
+): LiveData<R> {
+    val result = MediatorLiveData<R>()
+    result.addSource(this) {
+        result.value = block.invoke(this.value, liveData.value)
+    }
+    result.addSource(liveData) {
+        result.value = block.invoke(this.value, liveData.value)
+    }
+    return result
 }

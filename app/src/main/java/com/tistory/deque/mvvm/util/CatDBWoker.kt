@@ -8,6 +8,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.tistory.deque.mvvm.R
+import com.tistory.deque.mvvm.model.CardItem
 import com.tistory.deque.mvvm.model.Cat
 import com.tistory.deque.mvvm.model.MultiTypeModel
 import com.tistory.deque.mvvm.model.enum.MultiType
@@ -45,6 +46,34 @@ class CatDBWoker(context: Context, workerParams: WorkerParameters) : Worker(cont
                     database.getMultiTypeDao().insertAll(list)
                     Log.e("CHECK INTO HERE2", database.getMultiTypeDao().getAll().toString())
 
+                    val itemList = mutableListOf<CardItem>().apply {
+                        add(
+                            CardItem(
+                                title = R.string.title_1,
+                                image = R.drawable.snow,
+                                background = R.color.colorPrimary
+                            )
+                        )
+                        add(
+                            CardItem(
+                                title = R.string.title_2,
+                                image = R.drawable.snow,
+                                background = R.color.colorPrimaryDark
+                            )
+                        )
+                        add(
+                            CardItem(
+                                title = R.string.title_3,
+                                image = R.drawable.snow,
+                                background = R.color.colorAccent
+                            )
+                        )
+                        add(
+                            CardItem(title = R.string.title_4, image = R.drawable.snow, background = R.color.colorTitle)
+                        )
+                    }
+                    database.getCardItemDao().insertAll(itemList)
+                    Log.e("CHECK INTO HERE3", database.getCardItemDao().getAll().toString())
                     Result.success()
                 }
             }
