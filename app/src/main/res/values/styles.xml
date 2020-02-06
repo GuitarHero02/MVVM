@@ -17,4 +17,8 @@
         <item name="android:windowExitAnimation">@anim/up_out</item>
     </style>
 
+    <style name="ButtonStyle" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
+
 </resources>

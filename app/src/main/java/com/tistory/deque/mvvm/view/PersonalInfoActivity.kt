@@ -1,6 +1,5 @@
 package com.tistory.deque.mvvm.view
 
-import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import androidx.lifecycle.Observer
@@ -8,18 +7,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.tistory.deque.mvvm.R
-import com.tistory.deque.mvvm.adapter.CatListAdapter
 import com.tistory.deque.mvvm.adapter.MultiViewTypeAdapter
 import com.tistory.deque.mvvm.base.BaseKotlinActivity
 import com.tistory.deque.mvvm.databinding.ActivityPersonalInfoBinding
-import com.tistory.deque.mvvm.model.MultiTypeModel
-import com.tistory.deque.mvvm.model.enum.MultiType
-import com.tistory.deque.mvvm.viewmodel.CatViewModel
 import com.tistory.deque.mvvm.viewmodel.MultiTypeViewModel
 import kotlinx.android.synthetic.main.activity_personal_info.*
-import kotlinx.android.synthetic.main.text_type.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.logging.Handler
 
 class PersonalInfoActivity : BaseKotlinActivity<ActivityPersonalInfoBinding, MultiTypeViewModel>() {
     override val layoutResourceId: Int
